@@ -2,6 +2,7 @@ survey-api/build/
 survey-common/build/
 survey-read/build/
 survey-write/build/
+survey-events/build/
 .idea/
 .gradle/
 .vertx/
