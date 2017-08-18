@@ -91,8 +91,6 @@ public class SurveyWriteVerticle extends AbstractVerticle {
                     p.getAnswers().merge(a, 1, Integer::sum);
                 });
 
-                // TODO stats
-
                polls.put(p.getPollID(), p);
 
                 final AnswerSubmitted answerSubmitted = new AnswerSubmitted(p.getPollID(), p.getAnswers());

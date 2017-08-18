@@ -38,7 +38,7 @@ Option 1: fatjar
 
 Option 2:
 
-docker-compose up
+`docker-compose up`
 
 ## How to use
 
