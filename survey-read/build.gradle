@@ -1,3 +1,20 @@
+apply plugin: 'application'
+
 dependencies {
     compile project(":survey-common")
 }
+
+shadowJar {
+    classifier = 'fat'
+    mainClassName = 'com.surveygorilla.read.MainRead'
+    /*
+    manifest {
+        Attributes 'Main-Verticle': 'com.surveygorilla.read.SurveyReadVerticle'
+    }
+    */
+    mergeServiceFiles {
+        include 'META-INF/survey-api/io.vertx.core.spi.VerticleFactory'
+    }
+}
+
+build.dependsOn(shadowJar)

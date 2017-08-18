@@ -17,9 +17,11 @@ public class Poll {
 
     private Map<Integer, Integer> answers;
 
-    public Poll(Integer pollID, String question, Map<Integer, String> options, Map<Integer, Integer> answers) throws PollCreationException {
+    private Map<Integer, Double> stats;
 
-        if (pollID == null || question == null || options == null || answers == null) {
+    public Poll(Integer pollID, String question, Map<Integer, String> options, Map<Integer, Integer> answers, Map<Integer, Double> stats) throws PollCreationException {
+
+        if (pollID == null || question == null || options == null || answers == null || stats == null) {
             throw new PollCreationException("Unable to create a new poll");
         }
 
@@ -27,6 +29,7 @@ public class Poll {
         this.question = question;
         this.options = options;
         this.answers = answers;
+        this.stats = stats;
     }
 
     public Integer getPollID() {
@@ -43,5 +46,9 @@ public class Poll {
 
     public Map<Integer, Integer> getAnswers() {
         return answers;
+    }
+
+    public Map<Integer, Double> getStats() {
+        return stats;
     }
 }

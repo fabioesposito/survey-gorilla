@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Collectors;
 
 
 /**
@@ -52,10 +53,14 @@ public class SurveyWriteVerticle extends AbstractVerticle {
                         count.addAndGet(1),
                         createPollCommand.getQuestion(),
                         createPollCommand.getOptions(),
+                        new HashMap<>(),
                         new HashMap<>()
                 );
 
-                createPollCommand.getOptions().keySet().forEach(o -> p.getAnswers().merge(o, 0, Integer::sum));
+                createPollCommand.getOptions().keySet().forEach(o -> {
+                    p.getAnswers().merge(o, 0, Integer::sum);
+                    p.getStats().merge(o, 0.0, Double::sum);
+                });
 
                 polls.put(count.get(), p);
 
@@ -82,8 +87,13 @@ public class SurveyWriteVerticle extends AbstractVerticle {
 
             Poll p = polls.get(submitAnswerCommand.getPollID());
             if (p != null){
-                submitAnswerCommand.getAnswers().forEach(a -> p.getAnswers().merge(a, 1, Integer::sum));
-                polls.put(p.getPollID(), p);
+                submitAnswerCommand.getAnswers().forEach(a -> {
+                    p.getAnswers().merge(a, 1, Integer::sum);
+                });
+
+                // TODO stats
+
+               polls.put(p.getPollID(), p);
 
                 final AnswerSubmitted answerSubmitted = new AnswerSubmitted(p.getPollID(), p.getAnswers());
                 vertx.eventBus().send("answerSubmittedEvent", Json.encode(answerSubmitted));

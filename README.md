@@ -1,26 +1,38 @@
 # Survey Gorilla
 Survey monkey clone using vertx 
-
-## Todo
-
-    - Statistics
-    - Event sourcing
-    - Docker
     
 ## Components
 
 survey-api
+API for all frontends
 
 survey-common
-
-survey-read
+Shared VOs used by all services
 
 survey-write
+Handle all write-side requests (POST/PUT/DELETE)
+
+survey-read
+Answer all read-side requests (GET)
+
+survey-event
+Log all events happening on the system
 
 
 ## How to run
 
-`docker-compose up`
+`gradle clean build`
+
+`java -jar survey-api/build/libs/survey-api-1.0-SNAPSHOT.jar`
+
+`java -jar survey-read/build/libs/survey-read-1.0-SNAPSHOT.jar`
+
+`java -jar survey-write/build/libs/survey-write-1.0-SNAPSHOT.jar`
+
+`java -jar survey-events/build/libs/survey-events-1.0-SNAPSHOT.jar`
+
+
+## How to use
 
 `curl -X GET \
    http://localhost:8080/api/polls`

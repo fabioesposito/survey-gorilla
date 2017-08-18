@@ -51,7 +51,15 @@ public class SurveyReadVerticle extends AbstractVerticle {
                     PollCreatedEvent.class);
 
             try {
-                polls.put(pollCreatedEvent.getPollID(), new Poll(pollCreatedEvent.getPollID(), pollCreatedEvent.getQuestion(), pollCreatedEvent.getOptions(), new HashMap<>()));
+                polls.put(
+                        pollCreatedEvent.getPollID(),
+                        new Poll(
+                                pollCreatedEvent.getPollID(),
+                                pollCreatedEvent.getQuestion(),
+                                pollCreatedEvent.getOptions(),
+                                new HashMap<>(),
+                                new HashMap<>()
+                                ));
             } catch (PollCreationException e) {
                 e.printStackTrace();
             }

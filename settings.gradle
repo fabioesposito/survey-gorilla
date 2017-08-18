@@ -4,4 +4,5 @@ include 'survey-write'
 include 'survey-api'
 include 'survey-common'
 include 'survey-api'
+include 'survey-events'
 
