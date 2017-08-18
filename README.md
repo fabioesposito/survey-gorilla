@@ -19,18 +19,26 @@ survey-event
 Log all events happening on the system
 
 
+## How to build
+
+`./build.sh`
+
+
 ## How to run
 
-`gradle clean build`
+Option 1: fatjar
 
-`java -jar survey-api/build/libs/survey-api-1.0-SNAPSHOT.jar`
+`java -jar survey-api/build/libs/survey-api-1.0-SNAPSHOT-fat.jar`
 
-`java -jar survey-read/build/libs/survey-read-1.0-SNAPSHOT.jar`
+`java -jar survey-read/build/libs/survey-read-1.0-SNAPSHOT-fat.jar`
 
-`java -jar survey-write/build/libs/survey-write-1.0-SNAPSHOT.jar`
+`java -jar survey-write/build/libs/survey-write-1.0-SNAPSHOT-fat.jar`
 
-`java -jar survey-events/build/libs/survey-events-1.0-SNAPSHOT.jar`
+`java -jar survey-events/build/libs/survey-events-1.0-SNAPSHOT-fat.jar`
 
+Option 2:
+
+docker-compose up
 
 ## How to use
 

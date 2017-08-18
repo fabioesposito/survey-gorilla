@@ -8,9 +8,6 @@ shadowJar {
     classifier = 'fat'
     mainClassName = 'com.surveygorilla.write.MainWrite'
 
-    /*manifest {
-        Attributes 'Main-Verticle': 'com.surveygorilla.write.SurveyWriteVerticle'
-    }*/
     mergeServiceFiles {
         include 'META-INF/survey-api/io.vertx.core.spi.VerticleFactory'
     }

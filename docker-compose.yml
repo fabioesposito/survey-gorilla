@@ -1,0 +1,18 @@
+version: '2.1'
+
+services:
+    survey-api:
+      image: fesposito/survey-api
+
+    survey-events:
+      image: fesposito/survey-events
+
+    survey-read:
+      image: fesposito/survey-read
+
+    survey-write:
+      image: fesposito/survey-write
+
+
+
+
