@@ -1,0 +1,31 @@
+group 'gorilla'
+version '1.0-SNAPSHOT'
+
+subprojects {
+
+    apply plugin: 'java'
+
+    sourceCompatibility = 1.8
+
+    repositories {
+        mavenCentral()
+    }
+
+    group = rootProject.group
+    version = rootProject.version
+
+    plugins.withType(JavaPlugin) {
+        jar {
+            version = project.version
+        }
+    }
+
+    dependencies {
+        // https://mvnrepository.com/artifact/io.vertx/vertx-core
+        compile group: 'io.vertx', name: 'vertx-core', version: '3.4.2'
+        compile group: 'io.vertx', name: 'vertx-web', version: '3.4.2'
+        compile group: 'io.vertx', name: 'vertx-hazelcast', version: '3.4.2'
+
+        testCompile group: 'junit', name: 'junit', version: '4.12'
+    }
+}

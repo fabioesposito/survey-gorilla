@@ -1,0 +1,7 @@
+survey-api/build/
+survey-common/build/
+survey-read/build/
+survey-write/build/
+.idea/
+.gradle/
+.vertx/
