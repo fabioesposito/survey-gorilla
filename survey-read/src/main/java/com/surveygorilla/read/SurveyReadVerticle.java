@@ -59,7 +59,7 @@ public class SurveyReadVerticle extends AbstractVerticle {
                                 pollCreatedEvent.getOptions(),
                                 new HashMap<>(),
                                 new HashMap<>()
-                                ));
+                        ));
             } catch (PollCreationException e) {
                 e.printStackTrace();
             }
@@ -75,7 +75,7 @@ public class SurveyReadVerticle extends AbstractVerticle {
             Poll p = polls.get(answerSubmitted.getPollID());
             // Todo stats
 
-           if (p!=null){
+            if (p != null) {
                 p.getAnswers().putAll(answerSubmitted.getAnswers());
                 polls.put(p.getPollID(), p);
             }

@@ -18,7 +18,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
-import java.util.stream.Collectors;
 
 
 /**
@@ -86,12 +85,12 @@ public class SurveyWriteVerticle extends AbstractVerticle {
                     SubmitAnswerCommand.class);
 
             Poll p = polls.get(submitAnswerCommand.getPollID());
-            if (p != null){
+            if (p != null) {
                 submitAnswerCommand.getAnswers().forEach(a -> {
                     p.getAnswers().merge(a, 1, Integer::sum);
                 });
 
-               polls.put(p.getPollID(), p);
+                polls.put(p.getPollID(), p);
 
                 final AnswerSubmitted answerSubmitted = new AnswerSubmitted(p.getPollID(), p.getAnswers());
                 vertx.eventBus().send("answerSubmittedEvent", Json.encode(answerSubmitted));
