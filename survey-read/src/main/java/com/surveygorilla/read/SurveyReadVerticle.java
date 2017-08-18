@@ -73,10 +73,11 @@ public class SurveyReadVerticle extends AbstractVerticle {
                     AnswerSubmitted.class);
 
             Poll p = polls.get(answerSubmitted.getPollID());
-            // Todo stats
 
             if (p != null) {
                 p.getAnswers().putAll(answerSubmitted.getAnswers());
+                p.getStats().putAll(answerSubmitted.getStats());
+
                 polls.put(p.getPollID(), p);
             }
         };

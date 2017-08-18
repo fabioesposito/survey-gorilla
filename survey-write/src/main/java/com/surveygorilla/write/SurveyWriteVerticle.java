@@ -18,6 +18,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
+import java.util.stream.Stream;
 
 
 /**
@@ -90,9 +91,16 @@ public class SurveyWriteVerticle extends AbstractVerticle {
                     p.getAnswers().merge(a, 1, Integer::sum);
                 });
 
+                Double sum = p.getAnswers().values().stream().mapToDouble(s -> s).sum();
+
+                p.getAnswers().forEach((key, value) -> {
+                    Double percentage = value / sum;
+                    p.getStats().put(key, percentage);
+                });
+
                 polls.put(p.getPollID(), p);
 
-                final AnswerSubmitted answerSubmitted = new AnswerSubmitted(p.getPollID(), p.getAnswers());
+                final AnswerSubmitted answerSubmitted = new AnswerSubmitted(p.getPollID(), p.getAnswers(), p.getStats());
                 vertx.eventBus().send("answerSubmittedEvent", Json.encode(answerSubmitted));
 
                 handler.reply(Json.encodePrettily(p));
